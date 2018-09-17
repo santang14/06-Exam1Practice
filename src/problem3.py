@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Gerardo Santana.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -136,6 +136,31 @@ def problem3a(window, point, n):
         :type point:  rg.Point
         :type n:      int
     """
+    x = point.x
+    y = point.y
+    total = 0
+    thickness = 1
+    for k in range(n):
+        point_1 = rg.Point(x, y)
+        point_2 = rg.Point(x, y + 20)
+        line = rg.Line(point_1, point_2)
+
+        x = x + 20
+        y = y + 10
+
+        line.thickness = thickness
+
+        if thickness > 13:
+            thickness = 13
+
+        total = total + thickness
+        line.attach_to(window)
+        thickness = thickness + 2
+        window.render()
+        line.attach_to(window)
+    return total
+
+
     # ------------------------------------------------------------------
     # TODO: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
@@ -200,6 +225,23 @@ def problem3b(m, point1):
         :type m:      int
         :type point1: rg.Point
     """
+
+    new_window = rg.RoseWindow(400, 605)
+    new_window.render()
+
+    x = point1.x
+    y = point1.y
+    total = 0
+    for k in range(m):
+        n = 3 + (2 * k)
+        p = rg.Point(x, y)
+        t = problem3a(new_window, p, n)
+        y = y + 60
+        total = total + t
+    new_window.close_on_mouse_click()
+    return total
+
+
     # ------------------------------------------------------------------
     # TODO: 4. Implement and test this function.
     #          Tests have been written for you (above).
