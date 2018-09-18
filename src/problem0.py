@@ -293,6 +293,8 @@ def run_test_problem0c():
 
 
 def problem0c(circle, n, window):
+
+
     """
     See   problem0c_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -315,6 +317,12 @@ def problem0c(circle, n, window):
       :type n: int
       :type window: rg.RoseWindow
     """
+    for k in range(n):
+        circle.attach_to(window)
+        bob = rg.Circle(rg.Point(circle.center.x + (circle.radius * 2 * k), circle.center.y), circle.radius)
+        bob.attach_to(window)
+    window.render(.5)
+
     # ------------------------------------------------------------------
     # Done: 5. Implement and test this function.
     #          Tests have been written for you (above).
